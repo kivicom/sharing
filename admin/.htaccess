@@ -1,0 +1,4 @@
+AuthName "Admin panel"
+AuthType Basic
+AuthUserFile /home/rabata/www/admin/.htpasswd
+require valid-user

@@ -1,0 +1,9 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+}
+.starter-template .table > tbody > tr > td {
+	vertical-align: middle;
+}

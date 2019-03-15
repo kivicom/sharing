@@ -1,0 +1,10 @@
+AddDefaultCharset UTF-8
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get/([^/]*)/?$	download.php?file=$1&action=get [L,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]*)/?$	download.php?file=$1&action=view [L,QSA]
