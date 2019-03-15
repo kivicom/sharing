@@ -11,6 +11,8 @@ else
 setcookie("user_id", $user_id, $cookie_expire, "/");
 
 require_once "./class/Simpla.php";
+require_once "tokensignin.php";
+
 $simpla = new Simpla();
 
 $files = $simpla->files->get_files(array('order'=>'id','direction'=>'desc','user_id'=>$user_id));
@@ -60,7 +62,12 @@ $files = $simpla->files->get_files(array('order'=>'id','direction'=>'desc','user
           <!--
           <div class="g-signin2" data-onsuccess="onSignIn"></div><a href="#" onclick="signOut();">Sign out</a>
           -->
-          
+          <?php print_r($_SESSION['social_network']) ;?>
+            <?php if(!empty($_SESSION['social_network']['social_id'])) :?>
+                <p><a href="index.php?action=logout">Выйти</a></p>
+            <?php else:?>
+                <p><a href="<?php echo $google->getLink(); ?>">Аутентификация через Google</a></p>
+            <?php endif;?>
           <div class="m-x-auto">
           <table class="table table-hover table-sm table-sm-font history-block">
             <tbody>

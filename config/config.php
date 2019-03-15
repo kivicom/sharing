@@ -6,13 +6,13 @@
 db_server = "localhost"
 
 ;Пользователь базы данных
-db_user = "c33253_club"
+db_user = "root"
 
 ;Пароль к базе
-db_password = "123456"
+db_password = ""
 
 ;Имя базы
-db_name = "c33253_club"
+db_name = "sharing"
 
 ;Префикс для таблиц
 db_prefix =;
