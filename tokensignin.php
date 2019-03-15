@@ -25,13 +25,15 @@ if (!empty($_SESSION['social_network'])) {
 
 require_once 'socialauth/api/Api.php';
 require_once 'socialauth/api/google.php';
+require_once'class/Database.php';
 
 $google = new Google;
 if (isset($_GET['provider']) == 'google') {
     $google->auth();
     $info = $google->getTokenInfo();
-    header("location:index.php");
-    if (isset($info['name']) || isset($info['social_id'])) {
+
+
+    if (isset($info['name']) || isset($info['id'])) {
         $userInfo = array(
             'social_id' => isset($info['id']) ? $info['id'] : '',
             'name' => isset($info['name']) ? $info['name'] : '',
@@ -45,8 +47,8 @@ if (isset($_GET['provider']) == 'google') {
             'provider' => 'Google'
         );
     }
-    $db = mysqli_connect('localhost', 'c33253_club', '123456', 'c33253_club');
-    $db->query("SET NAMES utf8");
+
+    $db = new Database();
     $result = $db->query("SELECT *  FROM `users` WHERE `provider` = '". $userInfo['provider'] ."' AND `social_id` = '". $userInfo['social_id'] . "' LIMIT 1");
     $record = mysqli_fetch_array($result);
 
@@ -67,6 +69,7 @@ if (isset($_GET['provider']) == 'google') {
 
         $result = $db->query($query);
     }
+    header("location:index.php");
 }
 
 $_SESSION['social_network'] = $userInfo;
